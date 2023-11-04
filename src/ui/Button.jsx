@@ -35,7 +35,7 @@ const variations = {
     border: 1px solid var(--color-grey-200);
 
     &:hover {
-      background-color: var(--color-grey-50);
+      background-color: var(--color-grey-100);
     }
   `,
   danger: css`
@@ -49,18 +49,17 @@ const variations = {
 };
 
 const Button = styled.button`
-  background-color: var(--color-brand-600);
-  color: var(--color-brand-50);
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-sm);
-  cursor: pointer;
   border: none;
-  padding: 1.2rem 1.6rem;
-  font-size: 1rem;
-  font-weight: 500;
-  &:hover {
-    background-color: var(--color-brand-700);
-  }
+  ${({ size }) => sizes[size]}
+  ${({ variation }) => variations[variation]}
 `;
+
+Button.defaultProps = {
+  size: 'medium',
+  variation: 'primary',
+};
+
 export default Button;
 
