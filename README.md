@@ -91,6 +91,23 @@ Currently, two official plugins are available:
 
 ---
 
+## Step 3 + 4
+
+### Modeling State
+
+|State Domains / ***Tables***| Feature Categories|Explanation                                                                                    |
+|:--------------------------:|:-------------------|:---------------------------------------------------------------------------------------------|
+|1. Bookings                 |1. Bookings         |Bookings feature will need some Bookings state                                                |
+|                            |4. Dashboard        |Dashboard will display some statistics about recent bookings                                  |
+|                            |5. Check in and out |Updating the booking of a certain user from Checked-In to Checked-Out and the other way around|
+|2. Cabins                   |2. Cabins           |Cabins feature will need some Cabins state                                                    |
+|3. Guests                   |3. Guests           |Guests feature will need some Guests state                                                    |
+|4. Settings                 |6. App Settings     |Settings feature will need some Settings state                                                |
+|5. Users                    |7. Authentication   |For auth we are going to need some users that will be stored inside their remote state        |
+
+- All this state will be **global remote state**, stored within ***Supabase***
+- There will be one **table** for each state "slice" in the **database**
+
 ### Technology Decisions
 
 #### Client-Side-Rendering (CSR) OR Server-Side-Rendering (SSR)?
@@ -103,17 +120,17 @@ Currently, two official plugins are available:
 |**One perfect use case:** apps that are used "internally" as tools inside companies, that are entirely hidden behind a login|The **React team** is moving more and more in this direction|
 
 |Action| Library|Explanation|
-|:----------:|:-------------:|:---------------:|
-|Routing|React Router|The standard for React SPAs|
-|Styling|styled components|Very popular way of writing component-scoped CSS, right inside JavaScript. A technology worth learning|
-|Remote State Management|React Query|The best way of managing state, with features like caching, automatic re-fetching, pre-fetching, offline support, etc. Alternatives are SWR and RTK Query, but this is the most popular.
-|UI State Management|Context API|There is almost no UI state needed in this app, so one simple context with *useState* will be enough. No need for Redux|
-|Form management|React Hook Form|Handling bigger forms can be a lot of work, such as manual state and error handling. A library can simplify all this|
-|Other tools|React icons / React hot toasts / Rechart / date-fns / Supabase|
+|:---------------------:|:----------------:|:---------------:|
+|Routing                |React Router      |The standard for React SPAs|
+|Styling                |styled components |Very popular way of writing component-scoped CSS, right inside JavaScript. A technology worth learning|
+|Remote State Management|React Query       |The best way of managing state, with features like caching, automatic re-fetching, pre-fetching, offline support, etc. Alternatives are SWR and RTK Query, but this is the most popular.
+|UI State Management    |Context API       |There is almost no UI state needed in this app, so one simple context with *useState* will be enough. No need for Redux|
+|Form management        |React Hook Form   |Handling bigger forms can be a lot of work, such as manual state and error handling. A library can simplify all this|
+|Other tools            |React icons / React hot toasts / Rechart / date-fns / Supabase|
 
 ---
 
-### This project is organized in a feature-based structure
+## This project is organized in a feature-based structure
 
 |Folder|Explanation|
 |:---:|:---:|
@@ -128,9 +145,9 @@ Currently, two official plugins are available:
 
 ---
 
-### Technical stuff
+## Technical stuff
 
-#### Configuring eslint
+### Configuring eslint
 
 ``` bash
 npm install --save-dev vite-plugin-eslint eslint-config-react-app eslint
@@ -152,3 +169,22 @@ export default defineConfig({
   plugins: [react(), eslint()],
 });
 ```
+
+### Backend with Supabase
+
+- Plan application data
+- Model **realtionships** between data **tables**
+- **Load data** into app via **Supabase API**
+- Service that allows developers to easily **create a back-end with a Postgres database**
+- Automatically creates a **database** and **API** so we can easily request and recieve data form the server
+- **No back-end** development needed
+- Not just an API: Supabase also comes with easy-to-use **user authentication** and **file storage**
+
+#### Tables
+
+##### The Booking table
+
+- **Bookings** are about a **guest** renting a **cabin**
+- So a booking needs information about what **guest** is booking which **cabin**: we need to **connect** them
+- Supabase uses a Postgres DB, which is SQL (relational DB). So we **join** tables using **foreign keys**
+- Booking table will hold the **guestId** (id of Guest table) and **cabinId** (id of Cabin table) as foreign keys
