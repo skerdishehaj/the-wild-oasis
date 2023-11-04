@@ -146,7 +146,7 @@ npm install --save-dev vite-plugin-eslint eslint-config-react-app eslint
 
 - Modify the vite.config.js by adding
 
-``` bash
+``` javascript
 import eslint from 'vite-plugin-eslint';
 export default defineConfig({
   plugins: [react(), eslint()],
