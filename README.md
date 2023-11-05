@@ -170,13 +170,15 @@ export default defineConfig({
 });
 ```
 
+---
+
 ### Backend with Supabase
 
 - Plan application data
-- Model **realtionships** between data **tables**
+- Model **relationships** between data **tables**
 - **Load data** into app via **Supabase API**
 - Service that allows developers to easily **create a back-end with a Postgres database**
-- Automatically creates a **database** and **API** so we can easily request and recieve data form the server
+- Automatically creates a **database** and **API** so we can easily request and receive data form the server
 - **No back-end** development needed
 - Not just an API: Supabase also comes with easy-to-use **user authentication** and **file storage**
 
@@ -188,3 +190,34 @@ export default defineConfig({
 - So a booking needs information about what **guest** is booking which **cabin**: we need to **connect** them
 - Supabase uses a Postgres DB, which is SQL (relational DB). So we **join** tables using **foreign keys**
 - Booking table will hold the **guestId** (id of Guest table) and **cabinId** (id of Cabin table) as foreign keys
+
+---
+
+### React Query
+
+- A very powerful library for managing **remote (server) state**
+- Many features that allow us to write **a lot less code**, while also **making the UX a lot better**:
+  
+  - Data is stored in a **cache**. Once the data is **fetched** from the API it gets **cached** so **all the components** can **access** it.
+  - Automatic loading and error states
+  - Automatic re-fetching to keep state synched (e.g. after a certain timeout, after leaving a browser window and then come back to it)
+  - Pre-fetch - fetch data that we know will become necessary later, but before it is actually displayed in the screen (e.g. pagination - we can fetch data not only for the current page but also for the next page)
+  - Very easy to mutate (update) remote state.
+  - Offline support (since the data is already cached component get displayed using the cached data)
+
+- Needed because remote state is **fundamentally** different from regular (UI) state
+  - asynchronous and usually shared by many users of the app
+
+- Other libraries SWR, RTK Query (Redux Toolkit Query)
+
+#### Installing React Query
+
+``` bash
+npm install @tanstack/react-query
+```
+
+- **Integrating** React Query into Application
+
+  - Similar to setting up Context API or Redux
+  1. **Create** a place where the data will be **stored**
+  2. **Provide** that to the application
