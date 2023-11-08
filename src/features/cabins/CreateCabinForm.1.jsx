@@ -3,13 +3,13 @@ import Form from '../../ui/Form';
 import Button from '../../ui/Button';
 import FileInput from '../../ui/FileInput';
 import Textarea from '../../ui/Textarea';
-import { get, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createCabin } from '../../services/apiCabins';
 import toast from 'react-hot-toast';
 import FormRow from '../../ui/FormRow';
 
-function CreateCabinForm() {
+export function CreateCabinForm() {
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
   const queryClient = useQueryClient();
@@ -27,8 +27,7 @@ function CreateCabinForm() {
     },
   });
   const onSubmit = (data) => {
-    console.log({ ...data, image: data.image[0] });
-    mutate({ ...data, image: data.image[0] });
+    mutate(data);
   };
   const onError = (errors) => {
     console.log(errors);
@@ -126,6 +125,3 @@ function CreateCabinForm() {
     </Form>
   );
 }
-
-export default CreateCabinForm;
-

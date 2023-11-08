@@ -1,6 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const FileInput = styled.input`
+// ! attrs({ type: 'file' }) is required to make the input file type so that the browser will open the file picker dialog when the button is clicked. This way we don't have to use the input type="file" in the JSX.
+
+const FileInput = styled.input.attrs({ type: 'file' })`
   font-size: 1.4rem;
   border-radius: var(--border-radius-sm);
 
@@ -23,3 +25,4 @@ const FileInput = styled.input`
 `;
 
 export default FileInput;
+

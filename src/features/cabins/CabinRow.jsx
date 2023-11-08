@@ -54,6 +54,7 @@ function CabinRow({ cabin }) {
     discount,
     image,
   } = cabin;
+  console.log(cabin);
   const { isLoading: isDeleting, mutate } = useMutation({
     mutationFn: deleteCabin,
     onSuccess: () => {
