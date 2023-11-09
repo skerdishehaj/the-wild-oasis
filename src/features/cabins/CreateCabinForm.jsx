@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-import { useEditCabin } from './useEditCabin';
+import { useUpdateCabin } from './useUpdateCabin';
 import { useCreateCabin } from './useCreateCabin';
 
 import Input from '../../ui/Input';
@@ -12,8 +12,8 @@ import FormRow from '../../ui/FormRow';
 
 function CreateCabinForm({ cabinToEdit = {}, setShowForm }) {
   const { isCreating, createCabin } = useCreateCabin();
-  const { isEditing, editCabin } = useEditCabin();
-  const isWorking = isCreating || isEditing;
+  const { isUpdating, updateCabin } = useUpdateCabin();
+  const isWorking = isCreating || isUpdating;
 
   const { id: editId, ...editValues } = cabinToEdit;
   const isEditSession = Boolean(editId);
@@ -27,13 +27,13 @@ function CreateCabinForm({ cabinToEdit = {}, setShowForm }) {
   const onSubmit = (data) => {
     const image = typeof data.image === 'string' ? data.image : data.image[0];
     isEditSession
-      ? editCabin(
+      ? updateCabin(
           { newCabinData: { ...data, image }, id: editId },
           {
             onSuccess: (data) => {
               // ! data is the edited cabin returned from the API
               console.log(data);
-              reset();
+              // reset(); // ! Resting does not make sense when editing because we want to keep the values in the form
               setShowForm(false);
             },
           },
@@ -45,7 +45,7 @@ function CreateCabinForm({ cabinToEdit = {}, setShowForm }) {
               // ! data is the created new cabin returned from the API
               console.log(data);
               reset();
-              setShowForm(false);
+              setShowForm(false); // ! We want to close the form after creating a new cabin
             },
           },
         );
@@ -140,7 +140,7 @@ function CreateCabinForm({ cabinToEdit = {}, setShowForm }) {
           Cancel
         </Button>
         <Button disabled={isWorking}>
-          {isEditing
+          {isUpdating
             ? `Editing...`
             : isCreating
             ? `Creating...`
