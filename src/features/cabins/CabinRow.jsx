@@ -1,9 +1,7 @@
-import styled from 'styled-components';
-import { formatCurrency } from '../../utils/helpers';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteCabin } from '../../services/apiCabins';
-import toast from 'react-hot-toast';
 import { useState } from 'react';
+import styled from 'styled-components';
+import { useDeleteCabin } from './useDeleteCabin';
+import { formatCurrency } from '../../utils/helpers';
 import CreateCabinForm from './CreateCabinForm';
 
 const TableRow = styled.div`
@@ -47,7 +45,7 @@ const Discount = styled.div`
 
 function CabinRow({ cabin }) {
   const [showForm, setShowForm] = useState(false);
-  const queryClient = useQueryClient();
+  const { isDeleting, deleteCabin } = useDeleteCabin();
 
   const {
     id: cabinId,
@@ -57,18 +55,7 @@ function CabinRow({ cabin }) {
     discount,
     image,
   } = cabin;
-  const { isLoading: isDeleting, mutate } = useMutation({
-    mutationFn: deleteCabin,
-    onSuccess: () => {
-      toast.success(`Cabin deleted successfully`);
-      queryClient.invalidateQueries({
-        queryKey: ['cabins'],
-      });
-    },
-    onError: (error) => {
-      toast.error(error.message);
-    },
-  });
+
   return (
     <>
       <TableRow role='row'>
@@ -79,12 +66,16 @@ function CabinRow({ cabin }) {
           {maxCapacity === 1 ? `${maxCapacity} guest` : `${maxCapacity} guests`}
         </div>
         <Price>{formatCurrency(regularPrice)}</Price>
-        <Discount>{formatCurrency(discount)}</Discount>
+        {discount > 0 ? (
+          <Discount>{formatCurrency(discount)}</Discount>
+        ) : (
+          <span>&mdash;</span>
+        )}
         <div>
           <button onClick={() => setShowForm((showForm) => !showForm)}>
             Edit
           </button>
-          <button onClick={() => mutate(cabinId)} disabled={isDeleting}>
+          <button onClick={() => deleteCabin(cabinId)} disabled={isDeleting}>
             {isDeleting ? `Deleting...` : `Delete`}
           </button>
         </div>
