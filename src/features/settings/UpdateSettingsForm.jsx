@@ -21,8 +21,6 @@ function UpdateSettingsForm() {
 
   const handleUpdate = (e, field) => {
     const value = e.target.value;
-    console.log(field, value);
-    console.log(settings[field]);
     if (!value || +value === +settings[field]) {
       console.log('no change');
       return;

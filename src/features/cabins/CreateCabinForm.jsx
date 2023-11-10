@@ -10,7 +10,7 @@ import FileInput from '../../ui/FileInput';
 import Textarea from '../../ui/Textarea';
 import FormRow from '../../ui/FormRow';
 
-function CreateCabinForm({ cabinToEdit = {}, setShowForm }) {
+function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const { isCreating, createCabin } = useCreateCabin();
   const { isUpdating, updateCabin } = useUpdateCabin();
   const isWorking = isCreating || isUpdating;
@@ -34,7 +34,7 @@ function CreateCabinForm({ cabinToEdit = {}, setShowForm }) {
               // ! data is the edited cabin returned from the API
               console.log(data);
               // reset(); // ! Resting does not make sense when editing because we want to keep the values in the form
-              setShowForm(false);
+              onCloseModal?.();
             },
           },
         )
@@ -45,7 +45,7 @@ function CreateCabinForm({ cabinToEdit = {}, setShowForm }) {
               // ! data is the created new cabin returned from the API
               console.log(data);
               reset();
-              setShowForm(false); // ! We want to close the form after creating a new cabin
+              onCloseModal?.();
             },
           },
         );
@@ -55,7 +55,9 @@ function CreateCabinForm({ cabinToEdit = {}, setShowForm }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit, onError)}>
+    <Form
+      onSubmit={handleSubmit(onSubmit, onError)}
+      type={onCloseModal ? 'modal' : 'regular'}>
       <FormRow label='Cabin Name' error={errors?.name?.message}>
         <Input
           disabled={isWorking}
@@ -136,7 +138,11 @@ function CreateCabinForm({ cabinToEdit = {}, setShowForm }) {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button disabled={isWorking} variation='secondary' type='reset'>
+        <Button
+          disabled={isWorking}
+          variation='secondary'
+          type='reset'
+          onClick={() => onCloseModal?.()}>
           Cancel
         </Button>
         <Button disabled={isWorking}>
