@@ -1,4 +1,3 @@
-import { cloneElement, createContext, useContext, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { HiXMark } from 'react-icons/hi2';
 import styled from 'styled-components';
@@ -51,49 +50,19 @@ const Button = styled.button`
     color: var(--color-grey-500);
   }
 `;
-
-const ModalContext = createContext();
-
-function Modal({ children }) {
-  const [openName, setOpenName] = useState('');
-  const close = () => setOpenName('');
-  const open = setOpenName; // e.g.'cabin-form'
-
-  return (
-    <ModalContext.Provider
-      value={{
-        openName,
-        close,
-        open,
-      }}>
-      {children}
-    </ModalContext.Provider>
-  );
-}
-function Open({ children, opens: opensWindowName }) {
-  const { open } = useContext(ModalContext);
-  return cloneElement(children, { onClick: () => open(opensWindowName) });
-}
-// We cannot pass props to children elements so we clone them and pass props to the clone
-
-function Window({ children, name }) {
-  const { openName, close } = useContext(ModalContext);
-  if (openName !== name) return null;
+function Modal({ children, onClose }) {
   return createPortal(
     <Overlay>
       <StyledModal>
-        <Button onClick={close}>
+        <Button onClick={onClose}>
           <HiXMark />
         </Button>
-        <div>{cloneElement(children, { onCloseModal: close })}</div>
+        <div>{children}</div>
       </StyledModal>
     </Overlay>,
     document.getElementById('modal-root'),
   );
 }
-
-Modal.Open = Open;
-Modal.Window = Window;
 
 export default Modal;
 
