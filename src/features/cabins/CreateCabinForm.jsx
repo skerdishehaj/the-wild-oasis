@@ -32,7 +32,7 @@ function CreateCabinForm({ cabinToUpdate = {}, onCloseModal }) {
           {
             onSuccess: (data) => {
               // ! data is the edited cabin returned from the API
-              console.log(data);
+              // console.log(data);
               // reset(); // ! Resting does not make sense when editing because we want to keep the values in the form
               onCloseModal?.();
             },
@@ -43,7 +43,7 @@ function CreateCabinForm({ cabinToUpdate = {}, onCloseModal }) {
           {
             onSuccess: (data) => {
               // ! data is the created new cabin returned from the API
-              console.log(data);
+              // console.log(data);
               reset();
               onCloseModal?.();
             },
