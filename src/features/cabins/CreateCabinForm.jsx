@@ -10,12 +10,12 @@ import FileInput from '../../ui/FileInput';
 import Textarea from '../../ui/Textarea';
 import FormRow from '../../ui/FormRow';
 
-function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
+function CreateCabinForm({ cabinToUpdate = {}, onCloseModal }) {
   const { isCreating, createCabin } = useCreateCabin();
   const { isUpdating, updateCabin } = useUpdateCabin();
   const isWorking = isCreating || isUpdating;
 
-  const { id: editId, ...editValues } = cabinToEdit;
+  const { id: editId, ...editValues } = cabinToUpdate;
   const isEditSession = Boolean(editId);
 
   const { register, handleSubmit, reset, getValues, formState } = useForm({
