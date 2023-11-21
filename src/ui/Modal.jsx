@@ -1,10 +1,4 @@
-import {
-  cloneElement,
-  createContext,
-  useContext,
-  useRef,
-  useState,
-} from 'react';
+import { cloneElement, createContext, useContext, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { HiXMark } from 'react-icons/hi2';
 import styled from 'styled-components';
@@ -77,6 +71,7 @@ function Modal({ children }) {
     </ModalContext.Provider>
   );
 }
+
 function Open({ children, opens: opensWindowName }) {
   const { open } = useContext(ModalContext);
   return cloneElement(children, { onClick: () => open(opensWindowName) });
@@ -84,9 +79,8 @@ function Open({ children, opens: opensWindowName }) {
 // We cannot pass props to children elements so we clone them and pass props to the clone
 
 function Window({ children, name }) {
-  const ref = useRef();
   const { openName, close } = useContext(ModalContext);
-  useOutsideClick(ref, close);
+  const ref = useOutsideClick(close);
 
   if (openName !== name) return null;
 
