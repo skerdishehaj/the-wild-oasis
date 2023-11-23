@@ -38,4 +38,3 @@ function BookingTable() {
 }
 
 export default BookingTable;
-
