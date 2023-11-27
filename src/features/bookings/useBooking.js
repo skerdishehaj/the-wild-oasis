@@ -9,7 +9,7 @@ export function useBooking() {
     data: booking,
     error,
   } = useQuery({
-    queryKey: ['booking'],
+    queryKey: ['booking', bookingId],
     queryFn: () => getBooking(bookingId),
     retry: false, // By default, if the query fails, it will retry 3 times before failing; we don't want that here
   });
