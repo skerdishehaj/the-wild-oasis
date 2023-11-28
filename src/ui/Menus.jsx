@@ -71,7 +71,9 @@ function Menus({ children }) {
 
   const close = () => setOpenId('');
 
-  const open = setOpenId;
+  const open = (id) => {
+    setOpenId((prevOpenId) => (prevOpenId === id ? '' : id));
+  };
   return (
     <MenusContext.Provider
       value={{ openId, open, close, position, setPosition }}>
@@ -84,13 +86,11 @@ function Toggle({ id }) {
   const { openId, open, close, setPosition } = useContext(MenusContext);
   function handleClick(e) {
     const rect = e.target.closest('button').getBoundingClientRect();
-    console.log(rect);
     setPosition({
       x: window.innerWidth - rect.width - rect.x,
       y: rect.y + rect.height + 8,
     });
     openId === '' || openId !== id ? open(id) : close();
-    console.log('clicked');
   }
   return (
     <StyledToggle onClick={handleClick}>
@@ -131,4 +131,3 @@ Menus.List = List;
 Menus.Button = Button;
 
 export default Menus;
-

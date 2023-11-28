@@ -25,11 +25,6 @@ export async function getBookings({ filter, sortBy, page }) {
   }
 
   const { data, error, count } = await query;
-  console.log('ApiBookings.js');
-  console.log(data);
-  console.log(error);
-  console.log(count);
-  console.log('ApiBookings.js');
 
   if (error) {
     console.error(error);

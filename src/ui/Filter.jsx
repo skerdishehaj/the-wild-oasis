@@ -48,7 +48,6 @@ function Filter({ filterField, options }) {
     }
     setSearchParams(searchParams);
   };
-  console.log((0 === 1).toString());
 
   return (
     <StyledFilter>
