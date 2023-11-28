@@ -44,7 +44,7 @@ function Filter({ filterField, options }) {
   const handleClick = (value) => {
     searchParams.set(filterField, value);
     if (searchParams.get('page')) {
-      searchParams.set('page', 1);
+      searchParams.set('page', 1); // Fixed a bug where the page number was not reset when changing the filter
     }
     setSearchParams(searchParams);
   };
