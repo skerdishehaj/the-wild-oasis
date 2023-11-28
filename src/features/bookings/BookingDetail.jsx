@@ -23,7 +23,7 @@ function BookingDetail() {
   const navigate = useNavigate();
   const { booking, isLoading } = useBooking();
 
-  const { status, id: bookingId } = booking;
+  const { status, id: bookingId } = booking || {};
 
   const moveBack = useMoveBack();
 
