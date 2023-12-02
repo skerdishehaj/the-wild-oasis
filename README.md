@@ -40,9 +40,9 @@ Currently, two official plugins are available:
 
 ### Check In / Out
 
-- [ ] Users should be able to delete, check in, or check out a booking as the guest arrives (no editing necessary for now)
-- [ ] Bookings may not have been paid yet on guest arrival. Therefore, on check in, users need to accept payment (outside the app), and then confirm that payment has been received (inside the app)
-- [ ] On check in, the guest should have the ability to add breakfast for the entire stay, if they hadn't already
+- [x] Users should be able to delete, check in, or check out a booking as the guest arrives (no editing necessary for now)
+- [x] Bookings may not have been paid yet on guest arrival. Therefore, on check in, users need to accept payment (outside the app), and then confirm that payment has been received (inside the app)
+- [x] On check in, the guest should have the ability to add breakfast for the entire stay, if they hadn't already
 
 ### Guests
 
