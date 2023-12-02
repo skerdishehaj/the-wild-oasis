@@ -20,8 +20,14 @@ const Heading = styled.h1`
         `;
       case 'h3':
         return css`
-          font-size: 1.5rem;
+          font-size: 2rem;
           font-weight: 400;
+        `;
+      case 'h4':
+        return css`
+          font-size: 3rem;
+          font-weight: 600;
+          text-align: center;
         `;
       default:
         return css`
