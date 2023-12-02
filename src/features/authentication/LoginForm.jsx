@@ -5,6 +5,7 @@ import Input from '../../ui/Input';
 import FormRowVertical from '../../ui/FormRowVertical';
 import SpinnerMini from '../../ui/SpinnerMini';
 import { useLogin } from './useLogin';
+import { set } from 'date-fns';
 
 function LoginForm() {
   const { login, isLoading } = useLogin();
@@ -14,7 +15,15 @@ function LoginForm() {
   function handleSubmit(e) {
     e.preventDefault();
     if (!email || !password) return;
-    login({ email, password });
+    login(
+      { email, password },
+      {
+        onSettled: () => {
+          setPassword('');
+          setEmail('');
+        },
+      },
+    );
   }
 
   return (
