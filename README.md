@@ -222,7 +222,9 @@ npm install @tanstack/react-query
   1. **Create** a place where the data will be **stored**
   2. **Provide** that to the application
 
-## TODO
+---
+
+## TODOs
 
 - [ ] Creating new bookings
 - [ ] Updating a booking also adding check-in & check-out times
