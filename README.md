@@ -50,12 +50,12 @@ Currently, two official plugins are available:
 
 ### Dashboard
 
-- [ ] The initial app screen should be a dashboard, to display important information for the last 7, 30, or 90 days:
+- [x] The initial app screen should be a dashboard, to display important information for the last 7, 30, or 90 days:
 >
-> - [ ] A list of guests checking in and out on the current day. Users should be able to perform these tasks from here
-> - [ ] Statistics on recent bookings, sales, check ins, and occupancy rate
-> - [ ] A chart showing all daily hotel sales, showing both "total" sales and "extras" sales (only breakfast at the moment)
-> - [ ] A chart showing statistics on stay durations, as this is an important metric for the hotel
+> - [x] A list of guests checking in and out on the current day. Users should be able to perform these tasks from here
+> - [x] Statistics on recent bookings, sales, check ins, and occupancy rate
+> - [x] A chart showing all daily hotel sales, showing both "total" sales and "extras" sales (only breakfast at the moment)
+> - [x] A chart showing statistics on stay durations, as this is an important metric for the hotel
 
 ### Settings
 
@@ -221,3 +221,11 @@ npm install @tanstack/react-query
   - Similar to setting up Context API or Redux
   1. **Create** a place where the data will be **stored**
   2. **Provide** that to the application
+
+## TODO
+
+- [ ] Creating new bookings
+- [ ] Updating a booking also adding check-in & check-out times
+- [ ] Users can set a different price of a cabin for every single different day
+- [ ] In the sidebar a restaurant can be added, where users can register a bill value each time that a guest goes to the restaurant. At the check-out that bill should be paid.
+- [ ] On checkout click, implement a PDF invoice that could be mailed to the user
