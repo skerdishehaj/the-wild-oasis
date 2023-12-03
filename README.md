@@ -60,7 +60,7 @@ Currently, two official plugins are available:
 ### Settings
 
 - [x] Users should be able to define a few application-wide settings: breakfast price, min and max nights/booking, max guests/booking
-- [ ] App needs a dark mode
+- [x] App needs a dark mode
 
 ---
 
