@@ -25,7 +25,7 @@ Currently, two official plugins are available:
 
 - [x] Users of the app are hotel employees. They need to be logged into the application to perform tasks
 - [x] New users can only be signed up inside the applications (to guarantee that only actual hotel employees can get accounts)
-- [x] Users should be able to upload an avatar, and change their name and password
+- [x] Users should be able to upload an avatar and change their name and password
 
 ### Cabins
 
@@ -36,13 +36,13 @@ Currently, two official plugins are available:
 
 - [x] App needs a table view with all bookings, showing arrival and departure dates, status, and paid amount, as well as cabin and guest data
 - [x] The booking status can be "unconfirmed" (booked but not yet checked in), "checked in", or "checked out". The table should be filterable by this important status
-- [x] Other booking data includes: number of guests, number of nights, guest observations, whether they booked breakfast, breakfast price
+- [x] Other booking data includes: the number of guests, number of nights, guest observations, whether they booked breakfast, breakfast price
 
 ### Check In / Out
 
-- [x] Users should be able to delete, check in, or check out a booking as the guest arrives (no editing necessary for now)
-- [x] Bookings may not have been paid yet on guest arrival. Therefore, on check in, users need to accept payment (outside the app), and then confirm that payment has been received (inside the app)
-- [x] On check in, the guest should have the ability to add breakfast for the entire stay, if they hadn't already
+- [x] Users should be able to delete, check-in, or check out a booking as the guest arrives (no editing necessary for now)
+- [x] Bookings may not have been paid yet on guest arrival. Therefore, on check-in, users need to accept payment (outside the app), and then confirm that payment has been received (inside the app)
+- [x] On check-in, the guest should have the ability to add breakfast for the entire stay, if they haven't already
 
 ### Guests
 
@@ -53,7 +53,7 @@ Currently, two official plugins are available:
 - [x] The initial app screen should be a dashboard, to display important information for the last 7, 30, or 90 days:
 >
 > - [x] A list of guests checking in and out on the current day. Users should be able to perform these tasks from here
-> - [x] Statistics on recent bookings, sales, check ins, and occupancy rate
+> - [x] Statistics on recent bookings, sales, check-ins, and occupancy rate
 > - [x] A chart showing all daily hotel sales, showing both "total" sales and "extras" sales (only breakfast at the moment)
 > - [x] A chart showing statistics on stay durations, as this is an important metric for the hotel
 
@@ -87,7 +87,7 @@ Currently, two official plugins are available:
 |5. App settings| `/settings`|Users can define settings|
 |6. User sign up|`/users`|Users can be signed up. Route is `/users` *intentionally*, because people will not be allowed to sign up to the application. Existing users can register new users|
 |7. Login|`/login`|Default homepage in case users have not logged in|
-|8. Account settings|`/account`|Users can update the account setting (name, password, avatar)|
+|8. Account settings|`/account`|Users can update the account settings (name, password, avatar)|
 
 ---
 
@@ -99,7 +99,7 @@ Currently, two official plugins are available:
 |:--------------------------:|:-------------------|:---------------------------------------------------------------------------------------------|
 |1. Bookings                 |1. Bookings         |Bookings feature will need some Bookings state                                                |
 |                            |4. Dashboard        |Dashboard will display some statistics about recent bookings                                  |
-|                            |5. Check in and out |Updating the booking of a certain user from Checked-In to Checked-Out and the other way around|
+|                            |5. Check-in and out |Updating the booking of a certain user from Checked-In to Checked-Out and the other way around|
 |2. Cabins                   |2. Cabins           |Cabins feature will need some Cabins state                                                    |
 |3. Guests                   |3. Guests           |Guests feature will need some Guests state                                                    |
 |4. Settings                 |6. App Settings     |Settings feature will need some Settings state                                                |
@@ -189,7 +189,7 @@ export default defineConfig({
 - **Bookings** are about a **guest** renting a **cabin**
 - So a booking needs information about what **guest** is booking which **cabin**: we need to **connect** them
 - Supabase uses a Postgres DB, which is SQL (relational DB). So we **join** tables using **foreign keys**
-- Booking table will hold the **guestId** (id of Guest table) and **cabinId** (id of Cabin table) as foreign keys
+- The booking table will hold the **guestId** (id of the Guest table) and **cabinId** (id of Cabin table) as foreign keys
 
 ---
 
@@ -203,9 +203,9 @@ export default defineConfig({
   - Automatic re-fetching to keep state synched (e.g. after a certain timeout, after leaving a browser window and then come back to it)
   - Pre-fetch - fetch data that we know will become necessary later, but before it is actually displayed in the screen (e.g. pagination - we can fetch data not only for the current page but also for the next page)
   - Very easy to mutate (update) remote state.
-  - Offline support (since the data is already cached component get displayed using the cached data)
+  - Offline support (since the data is already cached component gets displayed using the cached data)
 
-- Needed because remote state is **fundamentally** different from regular (UI) state
+- Needed because the remote state is **fundamentally** different from the regular (UI) state
   - asynchronous and usually shared by many users of the app
 
 - Other libraries SWR, RTK Query (Redux Toolkit Query)
