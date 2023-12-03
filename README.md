@@ -23,9 +23,9 @@ Currently, two official plugins are available:
 
 ### Authentication
 
-- [ ] Users of the app are hotel employees. They need to be logged into the application to perform tasks
-- [ ] New users can only be signed up inside the applications (to guarantee that only actual hotel employees can get accounts)
-- [ ] Users should be able to upload an avatar, and change their name and password
+- [x] Users of the app are hotel employees. They need to be logged into the application to perform tasks
+- [x] New users can only be signed up inside the applications (to guarantee that only actual hotel employees can get accounts)
+- [x] Users should be able to upload an avatar, and change their name and password
 
 ### Cabins
 
