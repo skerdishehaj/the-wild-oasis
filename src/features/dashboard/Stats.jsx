@@ -27,14 +27,6 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
     }, 0) /
     (numDays * cabinCount);
 
-  console.log(cabinCount);
-  console.log(numDays);
-  console.log(
-    confirmedStays.reduce((acc, stay) => {
-      return acc + stay.nights;
-    }, 0),
-  );
-
   return (
     <>
       <Stat
