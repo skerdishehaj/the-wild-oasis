@@ -5,12 +5,11 @@ import Input from '../../ui/Input';
 import FormRowVertical from '../../ui/FormRowVertical';
 import SpinnerMini from '../../ui/SpinnerMini';
 import { useLogin } from './useLogin';
-import { set } from 'date-fns';
 
 function LoginForm() {
   const { login, isLoading } = useLogin();
-  const [email, setEmail] = useState('skerdi@example.com');
-  const [password, setPassword] = useState('Skerdi123.');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState();
 
   function handleSubmit(e) {
     e.preventDefault();
