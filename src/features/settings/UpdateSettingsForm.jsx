@@ -5,8 +5,6 @@ import Form from '../../ui/Form';
 import FormRow from '../../ui/FormRow';
 import Input from '../../ui/Input';
 import Spinner from '../../ui/Spinner';
-import { fi } from 'date-fns/locale';
-import { set } from 'date-fns';
 
 function UpdateSettingsForm() {
   const { isLoading, settings } = useSettings();
@@ -77,4 +75,3 @@ function UpdateSettingsForm() {
 }
 
 export default UpdateSettingsForm;
-
