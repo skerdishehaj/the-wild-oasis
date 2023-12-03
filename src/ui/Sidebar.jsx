@@ -3,7 +3,7 @@ import Logo from './Logo';
 import MainNav from './MainNav';
 // import Uploader from '../data/Uploader';
 
-const StyledSideBar = styled.aside`
+const StyledSidebar = styled.aside`
   background-color: var(--color-grey-0);
   padding: 3.2rem 2.4rem;
   border-right: 1px solid var(--color-grey-100);
@@ -13,14 +13,14 @@ const StyledSideBar = styled.aside`
   gap: 3.2rem;
 `;
 
-function SideBar() {
+function Sidebar() {
   return (
-    <StyledSideBar>
+    <StyledSidebar>
       <Logo />
       <MainNav />
       {/* <Uploader /> */}
-    </StyledSideBar>
+    </StyledSidebar>
   );
 }
 
-export default SideBar;
+export default Sidebar;
