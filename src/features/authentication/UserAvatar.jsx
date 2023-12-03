@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { useUser } from '../authentication/useUser';
 
 const StyledUserAvatar = styled.div`
   display: flex;
@@ -19,3 +20,25 @@ const Avatar = styled.img`
   border-radius: 50%;
   outline: 2px solid var(--color-grey-100);
 `;
+
+function UserAvatar() {
+  /**
+   * We do not use the isLoaded property from the useUser hook
+   * because we have used it in the ProtectedRoute component.
+   * So the page will not be rendered until the user is loaded.
+   */
+  const { user } = useUser();
+  const { fullName, avatar } = user.user_metadata;
+  console.log(user);
+  return (
+    <StyledUserAvatar>
+      <Avatar
+        src={avatar || '/src/data/img/default-user.jpg'}
+        alt={`Avatar of ${fullName}`}
+      />
+      <span>{fullName}</span>
+    </StyledUserAvatar>
+  );
+}
+
+export default UserAvatar;
