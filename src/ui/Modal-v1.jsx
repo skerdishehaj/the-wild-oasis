@@ -60,9 +60,8 @@ function Modal({ children, onClose }) {
         <div>{children}</div>
       </StyledModal>
     </Overlay>,
-    document.getElementById('modal-root'),
+    document.getElementById('modal-root')
   );
 }
 
 export default Modal;
-

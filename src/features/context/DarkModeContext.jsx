@@ -5,7 +5,7 @@ const DarkModeContext = createContext();
 function DarkModeProvider({ children }) {
   const [isDarkMode, setIsDarkMode] = useLocalStorageState(
     window.matchMedia('(prefers-color-scheme: dark)').matches, // this function returns true if the user's OS is in dark mode
-    'isDarkMode',
+    'isDarkMode'
   );
 
   useEffect(() => {
@@ -22,11 +22,7 @@ function DarkModeProvider({ children }) {
     setIsDarkMode((isDark) => !isDark);
   }
 
-  return (
-    <DarkModeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
-      {children}
-    </DarkModeContext.Provider>
-  );
+  return <DarkModeContext.Provider value={{ isDarkMode, toggleDarkMode }}>{children}</DarkModeContext.Provider>;
 }
 
 function useDarkMode() {

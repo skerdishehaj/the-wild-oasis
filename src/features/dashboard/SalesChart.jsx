@@ -3,15 +3,7 @@ import DashboardBox from './DashboardBox';
 import Heading from '../../ui/Heading';
 import { useDarkMode } from '../context/DarkModeContext';
 
-import {
-  Area,
-  AreaChart,
-  CartesianGrid,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts';
+import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { eachDayOfInterval, format, isSameDay, subDays } from 'date-fns';
 
 const StyledSalesChart = styled(DashboardBox)`
@@ -92,21 +84,12 @@ function SalesChart({ bookings, numDays }) {
   return (
     <StyledSalesChart>
       <Heading as='h2'>
-        Sales from {format(allDates.at(0), 'MMM dd yyyy ')} &mdash;{' '}
-        {format(allDates.at(-1), 'MMM dd yyyy ')}
+        Sales from {format(allDates.at(0), 'MMM dd yyyy ')} &mdash; {format(allDates.at(-1), 'MMM dd yyyy ')}
       </Heading>
       <ResponsiveContainer width='100%' height={300}>
         <AreaChart data={data} height={300} width={600}>
-          <XAxis
-            dataKey='label'
-            tick={{ fill: colors.text }}
-            tickLine={{ stroke: colors.text }}
-          />
-          <YAxis
-            unit='$'
-            tick={{ fill: colors.text }}
-            tickLine={{ stroke: colors.text }}
-          />
+          <XAxis dataKey='label' tick={{ fill: colors.text }} tickLine={{ stroke: colors.text }} />
+          <YAxis unit='$' tick={{ fill: colors.text }} tickLine={{ stroke: colors.text }} />
           <CartesianGrid strokeDasharray='4' />
 
           <Tooltip contentStyle={{ backgroundColor: colors.background }} />

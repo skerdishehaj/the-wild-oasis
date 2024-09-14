@@ -75,10 +75,7 @@ function Menus({ children }) {
     setOpenId((prevOpenId) => (prevOpenId === id ? '' : id));
   };
   return (
-    <MenusContext.Provider
-      value={{ openId, open, close, position, setPosition }}>
-      {children}
-    </MenusContext.Provider>
+    <MenusContext.Provider value={{ openId, open, close, position, setPosition }}>{children}</MenusContext.Provider>
   );
 }
 
@@ -113,7 +110,7 @@ function List({ id, children }) {
     <StyledList position={position} ref={ref}>
       {children}
     </StyledList>,
-    document.body,
+    document.body
   );
 }
 function Button({ children, icon, onClick }) {

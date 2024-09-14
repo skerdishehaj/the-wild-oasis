@@ -36,7 +36,7 @@ function CreateCabinForm({ cabinToUpdate = {}, onCloseModal }) {
               // reset(); // ! Resting does not make sense when editing because we want to keep the values in the form
               onCloseModal?.();
             },
-          },
+          }
         )
       : createCabin(
           { ...data, image },
@@ -47,7 +47,7 @@ function CreateCabinForm({ cabinToUpdate = {}, onCloseModal }) {
               reset();
               onCloseModal?.();
             },
-          },
+          }
         );
   };
   const onError = (errors) => {
@@ -55,9 +55,7 @@ function CreateCabinForm({ cabinToUpdate = {}, onCloseModal }) {
   };
 
   return (
-    <Form
-      onSubmit={handleSubmit(onSubmit, onError)}
-      type={onCloseModal ? 'modal' : 'regular'}>
+    <Form onSubmit={handleSubmit(onSubmit, onError)} type={onCloseModal ? 'modal' : 'regular'}>
       <FormRow label='Cabin Name' error={errors?.name?.message}>
         <Input
           disabled={isWorking}
@@ -104,16 +102,12 @@ function CreateCabinForm({ cabinToUpdate = {}, onCloseModal }) {
           {...register('discount', {
             required: `Discount is required`,
             validate: (value) =>
-              value > +getValues()?.regularPrice
-                ? `Discount cannot be higher than regular price`
-                : true,
+              value > +getValues()?.regularPrice ? `Discount cannot be higher than regular price` : true,
           })}
         />
       </FormRow>
 
-      <FormRow
-        label='Description for website'
-        error={errors?.description?.message}>
+      <FormRow label='Description for website' error={errors?.description?.message}>
         <Textarea
           disabled={isWorking}
           type='number'
@@ -138,21 +132,11 @@ function CreateCabinForm({ cabinToUpdate = {}, onCloseModal }) {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button
-          disabled={isWorking}
-          variation='secondary'
-          type='reset'
-          onClick={() => onCloseModal?.()}>
+        <Button disabled={isWorking} variation='secondary' type='reset' onClick={() => onCloseModal?.()}>
           Cancel
         </Button>
         <Button disabled={isWorking}>
-          {isUpdating
-            ? `Editing...`
-            : isCreating
-            ? `Creating...`
-            : isEditSession
-            ? `Edit Cabin`
-            : `Create new Cabin`}
+          {isUpdating ? `Editing...` : isCreating ? `Creating...` : isEditSession ? `Edit Cabin` : `Create new Cabin`}
         </Button>
       </FormRow>
     </Form>
@@ -160,4 +144,3 @@ function CreateCabinForm({ cabinToUpdate = {}, onCloseModal }) {
 }
 
 export default CreateCabinForm;
-

@@ -93,7 +93,7 @@ function Window({ children, name }) {
         <div>{cloneElement(children, { onCloseModal: close })}</div>
       </StyledModal>
     </Overlay>,
-    document.getElementById('modal-root'),
+    document.getElementById('modal-root')
   );
 }
 
@@ -101,4 +101,3 @@ Modal.Open = Open;
 Modal.Window = Window;
 
 export default Modal;
-

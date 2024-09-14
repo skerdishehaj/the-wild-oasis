@@ -39,17 +39,8 @@ function CheckinBooking() {
 
   if (isLoading || isLoadingSettings) return <Spinner />;
 
-  const {
-    id: bookingId,
-    guests,
-    totalPrice,
-    numGuests,
-    hasBreakfast,
-    numNights,
-    status,
-  } = booking;
-  const optionalBreakfastPrice =
-    settings?.breakfastPrice * numNights * numGuests;
+  const { id: bookingId, guests, totalPrice, numGuests, hasBreakfast, numNights, status } = booking;
+  const optionalBreakfastPrice = settings?.breakfastPrice * numNights * numGuests;
 
   function handleCheckin() {
     if (!confirmPaid) return;
@@ -99,10 +90,8 @@ function CheckinBooking() {
           id='confirm'>
           I confirm that {guests.fullName} has paid the total amount of{' '}
           {addBreakfast
-            ? `${formatCurrency(
-                totalPrice + optionalBreakfastPrice,
-              )} (${formatCurrency(totalPrice)} + ${formatCurrency(
-                optionalBreakfastPrice,
+            ? `${formatCurrency(totalPrice + optionalBreakfastPrice)} (${formatCurrency(totalPrice)} + ${formatCurrency(
+                optionalBreakfastPrice
               )})`
             : formatCurrency(totalPrice)}
         </Checkbox>
@@ -110,9 +99,7 @@ function CheckinBooking() {
 
       <ButtonGroup>
         {status === 'checked-in' || (
-          <Button
-            onClick={handleCheckin}
-            disabled={!confirmPaid || isCheckingIn}>
+          <Button onClick={handleCheckin} disabled={!confirmPaid || isCheckingIn}>
             Check in booking #{bookingId}
           </Button>
         )}

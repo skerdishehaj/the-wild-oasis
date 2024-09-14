@@ -8,14 +8,7 @@ function SortBy({ options }) {
     searchParams.set('sortBy', e.target.value);
     setSearchParams(searchParams);
   };
-  return (
-    <Select
-      options={options}
-      type='white'
-      onChange={handleChange}
-      value={sortBy}
-    />
-  );
+  return <Select options={options} type='white' onChange={handleChange} value={sortBy} />;
 }
 
 export default SortBy;

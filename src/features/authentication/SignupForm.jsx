@@ -43,9 +43,7 @@ function SignupForm() {
         />
       </FormRow>
 
-      <FormRow
-        label='Password (min 8 characters)'
-        error={errors?.password?.message}>
+      <FormRow label='Password (min 8 characters)' error={errors?.password?.message}>
         <Input
           disabled={isLoading}
           type='password'
@@ -77,11 +75,7 @@ function SignupForm() {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button
-          variation='secondary'
-          type='reset'
-          disabled={isLoading}
-          onClick={reset}>
+        <Button variation='secondary' type='reset' disabled={isLoading} onClick={reset}>
           Cancel
         </Button>
         <Button disabled={isLoading}>Create new user</Button>

@@ -25,8 +25,7 @@ const Buttons = styled.div`
 `;
 
 const PaginationButton = styled.button`
-  background-color: ${(props) =>
-    props.active ? ' var(--color-brand-600)' : 'var(--color-grey-50)'};
+  background-color: ${(props) => (props.active ? ' var(--color-brand-600)' : 'var(--color-grey-50)')};
   color: ${(props) => (props.active ? ' var(--color-brand-50)' : 'inherit')};
   border: none;
   border-radius: var(--border-radius-sm);
@@ -61,9 +60,7 @@ const PaginationButton = styled.button`
 
 function Pagination({ count }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentPage = !searchParams.get('page')
-    ? 1
-    : Number(searchParams.get('page'));
+  const currentPage = !searchParams.get('page') ? 1 : Number(searchParams.get('page'));
 
   const pageCount = Math.ceil(count / PAGE_SIZE);
   function nextPage() {
@@ -83,18 +80,13 @@ function Pagination({ count }) {
     <StyledPagination>
       <P>
         Showing <span>{(currentPage - 1) * PAGE_SIZE + 1}</span> to{' '}
-        <span>
-          {currentPage === pageCount ? count : currentPage * PAGE_SIZE}
-        </span>{' '}
-        of <span>{count}</span> results.
+        <span>{currentPage === pageCount ? count : currentPage * PAGE_SIZE}</span> of <span>{count}</span> results.
       </P>
       <Buttons>
         <PaginationButton onClick={prevPage} disabled={currentPage === 1}>
           <HiChevronLeft /> <span>Previous</span>
         </PaginationButton>
-        <PaginationButton
-          onClick={nextPage}
-          disabled={currentPage === pageCount}>
+        <PaginationButton onClick={nextPage} disabled={currentPage === pageCount}>
           <span>Next</span>
           <HiChevronRight />
         </PaginationButton>

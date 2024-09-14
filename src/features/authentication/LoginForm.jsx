@@ -21,7 +21,7 @@ function LoginForm() {
           setPassword('');
           setEmail('');
         },
-      },
+      }
     );
   }
 

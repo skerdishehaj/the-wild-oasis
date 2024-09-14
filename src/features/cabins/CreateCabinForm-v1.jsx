@@ -82,16 +82,12 @@ function CreateCabinForm() {
           {...register('discount', {
             required: `Discount is required`,
             validate: (value) =>
-              value > +getValues()?.regularPrice
-                ? `Discount cannot be higher than regular price`
-                : true,
+              value > +getValues()?.regularPrice ? `Discount cannot be higher than regular price` : true,
           })}
         />
       </FormRow>
 
-      <FormRow
-        label='Description for website'
-        error={errors?.description?.message}>
+      <FormRow label='Description for website' error={errors?.description?.message}>
         <Textarea
           disabled={isCreating}
           type='number'
@@ -119,9 +115,7 @@ function CreateCabinForm() {
         <Button disabled={isCreating} variation='secondary' type='reset'>
           Cancel
         </Button>
-        <Button disabled={isCreating}>
-          {isCreating ? `Adding...` : `Add Cabin`}
-        </Button>
+        <Button disabled={isCreating}>{isCreating ? `Adding...` : `Add Cabin`}</Button>
       </FormRow>
     </Form>
   );

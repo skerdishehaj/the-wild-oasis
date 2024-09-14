@@ -9,10 +9,7 @@ export function useBookings() {
 
   // Filter
   const filterValue = searchParams.get('status') || 'all';
-  const filter =
-    !filterValue || filterValue === 'all'
-      ? null
-      : { field: 'status', value: filterValue, method: 'eq' };
+  const filter = !filterValue || filterValue === 'all' ? null : { field: 'status', value: filterValue, method: 'eq' };
 
   // Sort
   const sortByRaw = searchParams.get('sortBy') || 'startDate-desc';

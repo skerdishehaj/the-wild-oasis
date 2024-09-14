@@ -50,4 +50,3 @@ function CabinTable() {
 }
 
 export default CabinTable;
-

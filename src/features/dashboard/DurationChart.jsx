@@ -1,13 +1,6 @@
 import styled from 'styled-components';
 import Heading from '../../ui/Heading';
-import {
-  Cell,
-  Legend,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-  Tooltip,
-} from 'recharts';
+import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { useDarkMode } from '../context/DarkModeContext';
 
 const ChartBox = styled.div`
@@ -118,9 +111,7 @@ function prepareData(startData, stays) {
   // A bit ugly code, but sometimes this is what it takes when working with real data 😅
 
   function incArrayValue(arr, field) {
-    return arr.map((obj) =>
-      obj.duration === field ? { ...obj, value: obj.value + 1 } : obj,
-    );
+    return arr.map((obj) => (obj.duration === field ? { ...obj, value: obj.value + 1 } : obj));
   }
 
   const data = stays
@@ -160,22 +151,11 @@ function DurationChart({ confirmedStays }) {
             cy='50%'
             paddingAngle={3}>
             {data.map((entry, index) => (
-              <Cell
-                key={entry.duration}
-                fill={entry.color}
-                stroke={entry.color}
-              />
+              <Cell key={entry.duration} fill={entry.color} stroke={entry.color} />
             ))}
           </Pie>
           <Tooltip />
-          <Legend
-            verticalAlign='middle'
-            align='right'
-            width='30%'
-            layout='vertical'
-            iconSize={15}
-            iconType='circle'
-          />
+          <Legend verticalAlign='middle' align='right' width='30%' layout='vertical' iconSize={15} iconType='circle' />
         </PieChart>
       </ResponsiveContainer>
     </ChartBox>

@@ -7,15 +7,14 @@ export async function getBookings({ filter, sortBy, page }) {
     .from('bookings')
     .select(
       'id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, cabins(name), guests(fullName, email)',
-      { count: 'exact' },
+      { count: 'exact' }
     );
 
   // Filter
   if (filter) query[filter.method || 'eq'](filter.field, filter.value);
 
   //Sort
-  if (sortBy)
-    query.order(sortBy.field, { ascending: sortBy.direction === 'asc' });
+  if (sortBy) query.order(sortBy.field, { ascending: sortBy.direction === 'asc' });
 
   // Pagination
   if (page) {
@@ -34,11 +33,7 @@ export async function getBookings({ filter, sortBy, page }) {
 }
 
 export async function getBooking(id) {
-  const { data, error } = await supabase
-    .from('bookings')
-    .select('*, cabins(*), guests(*)')
-    .eq('id', id)
-    .single();
+  const { data, error } = await supabase.from('bookings').select('*, cabins(*), guests(*)').eq('id', id).single();
 
   if (error) {
     console.error(error);
@@ -86,9 +81,7 @@ export async function getStaysTodayActivity() {
   const { data, error } = await supabase
     .from('bookings')
     .select('*, guests(fullName, nationality, countryFlag)')
-    .or(
-      `and(status.eq.unconfirmed,startDate.eq.${getToday()}),and(status.eq.checked-in,endDate.eq.${getToday()})`,
-    )
+    .or(`and(status.eq.unconfirmed,startDate.eq.${getToday()}),and(status.eq.checked-in,endDate.eq.${getToday()})`)
     .order('created_at');
 
   // Equivalent to this. But by querying this, we only download the data we actually need, otherwise we would need ALL bookings ever created
@@ -103,12 +96,7 @@ export async function getStaysTodayActivity() {
 }
 
 export async function updateBooking(id, obj) {
-  const { data, error } = await supabase
-    .from('bookings')
-    .update(obj)
-    .eq('id', id)
-    .select()
-    .single();
+  const { data, error } = await supabase.from('bookings').update(obj).eq('id', id).select().single();
 
   if (error) {
     console.error(error);

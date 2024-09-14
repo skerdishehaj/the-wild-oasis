@@ -10,12 +10,7 @@ function UpdateSettingsForm() {
   const { isLoading, settings } = useSettings();
   const { isUpdating, updateSettings } = useUpdateSettings();
 
-  const {
-    minBookingLength,
-    maxBookingLength,
-    maxGuestsPerBooking,
-    breakfastPrice,
-  } = settings ? settings : {};
+  const { minBookingLength, maxBookingLength, maxGuestsPerBooking, breakfastPrice } = settings ? settings : {};
 
   const handleUpdate = (e, field) => {
     const value = e.target.value;

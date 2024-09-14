@@ -103,4 +103,3 @@ Table.Body = Body;
 Table.Footer = Footer;
 
 export default Table;
-

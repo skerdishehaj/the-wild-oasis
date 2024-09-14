@@ -34,7 +34,7 @@ function UpdateUserDataForm() {
           setAvatar(null);
           e.target.reset();
         },
-      },
+      }
     );
   }
 
@@ -59,19 +59,10 @@ function UpdateUserDataForm() {
         />
       </FormRow>
       <FormRow label='Avatar image'>
-        <FileInput
-          id='avatar'
-          accept='image/*'
-          onChange={(e) => setAvatar(e.target.files[0])}
-          disabled={isUpdating}
-        />
+        <FileInput id='avatar' accept='image/*' onChange={(e) => setAvatar(e.target.files[0])} disabled={isUpdating} />
       </FormRow>
       <FormRow>
-        <Button
-          type='reset'
-          variation='secondary'
-          disabled={isUpdating}
-          onClick={handleCancel}>
+        <Button type='reset' variation='secondary' disabled={isUpdating} onClick={handleCancel}>
           Cancel
         </Button>
         <Button disabled={isUpdating}>Update account</Button>
